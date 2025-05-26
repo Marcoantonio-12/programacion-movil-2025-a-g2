@@ -1,0 +1,167 @@
+/* Estilo del ion-header */
+ion-header {
+  background: linear-gradient(135deg, #6200ee 0%, #3700b3 100%); /* Fondo degradado */
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  animation: fadeInHeader 1s ease-in-out; /* Animación de entrada */
+}
+
+/* Animación de entrada para el header */
+@keyframes fadeInHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo del ion-toolbar */
+ion-toolbar {
+  --background: transparent; /* Fondo transparente para que se vea el degradado del header */
+  --color: white; /* Color de texto blanco */
+  border-radius: 10px; /* Bordes redondeados en el toolbar */
+  padding: 10px 20px; /* Relleno ajustado para una mejor apariencia */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para resaltar el toolbar */
+  animation: fadeInToolbar 1s ease-out; /* Animación suave para el toolbar */
+}
+
+/* Animación de entrada del toolbar */
+@keyframes fadeInToolbar {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilo del título h2 */
+h2 {
+  font-family: 'Roboto', sans-serif; /* Tipografía moderna */
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase; /* Hacer el título en mayúsculas */
+  letter-spacing: 2px; /* Espaciado entre letras */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para el texto */
+  animation: fadeInTitle 1s ease-out forwards; /* Animación de entrada */
+}
+
+/* Animación de aparición del título */
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de entrada del contenido principal */
+.home-content {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin-top: 30px;
+  animation: fadeInContent 1.5s ease-in-out, scaleUp 1s ease-out; /* Animaciones de entrada */
+}
+
+/* Animación de entrada de contenido */
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de escalado */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Estilo para los botones */
+ion-button {
+  --border-radius: 30px; /* Bordes redondeados en los botones */
+  --background: #6200ee;
+  --color: white;
+  margin: 10px 0;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  animation: fadeInButton 0.8s ease-out forwards; /* Animación de entrada */
+}
+
+/* Animación para los botones */
+@keyframes fadeInButton {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto al pasar el cursor sobre los botones */
+ion-button:hover {
+  transform: translateY(-5px); /* Efecto de deslizamiento hacia arriba */
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+  background: linear-gradient(135deg, #3700b3 0%, #6200ee 100%); /* Cambia el fondo con un degradado */
+}
+
+/* Botones a pantalla completa */
+ion-button[expand='block'] {
+  width: 90%;
+  max-width: 400px; /* Ancho máximo para los botones */
+  margin: 15px auto;
+}
+
+/* Fondo del contenido */
+.home-content p {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.6;
+  animation: fadeInText 1s ease-out forwards; /* Animación de desvanecimiento para el texto */
+}
+
+/* Animación para los párrafos */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de sombra en el header al hacer scroll */
+ion-header.ion-has-header-scrolling {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer scroll */
+}

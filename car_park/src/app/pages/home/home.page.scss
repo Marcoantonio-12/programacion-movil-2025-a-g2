@@ -1,0 +1,79 @@
+.home-content {
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.welcome-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInTitle 2s ease-in forwards;
+}
+
+.home-description {
+  font-size: 1.2rem;
+  color: var(--ion-color-dark);
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeInDescription 2.5s ease-in-out forwards;
+}
+
+ion-button {
+  margin: 10px 0;
+  opacity: 0;
+  animation: fadeInButton 3s ease-in-out forwards;
+}
+
+.animated-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDescription {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,107 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="guardarUsuario()" #registroForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="usuario.nombre"
+        name="nombre"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="usuario.email"
+        name="correo"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="correoInvalido" class="error-message">
+      El correo debe ser válido (por ejemplo, ejemplo&#64;gmail.com).
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input
+        [type]="mostrarContrasena ? 'text' : 'password'"
+        [(ngModel)]="usuario.password"
+        name="contrasena"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-input>
+      <ion-icon
+        slot="end"
+        name="{{ mostrarContrasena ? 'eye-off' : 'eye' }}"
+        (click)="toggleMostrarContrasena()"
+        class="toggle-password-icon"
+      ></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="usuario.telefono"
+        name="telefono"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="telefonoInvalido" class="error-message">
+      El teléfono debe tener 10 dígitos.
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Rol</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="usuario.rol"
+        name="rol"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!registroForm.valid">
+      Registrar
+    </ion-button>
+  </form>
+
+  <div class="form-footer">
+    <ion-button fill="clear" routerLink="/login">
+      ¿Ya tienes cuenta? Inicia sesión
+    </ion-button>
+  </div>
+</ion-content>
+
+<style>
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 16px;
+  }
+
+  .form-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .toggle-password-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+</style>
