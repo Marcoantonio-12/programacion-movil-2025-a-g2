@@ -1,0 +1,234 @@
+/* Estilos globales */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+/* Body */
+body {
+  background-color: #f0f8ff;  /* Fondo azul claro */
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+  flex-direction: column;
+}
+
+/* Contenedor Principal */
+.container {
+  max-width: 480px;
+  width: 100%;
+  padding: 20px;
+  background: #ffffff;  /* Fondo blanco para contraste */
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.6s ease-in-out;
+}
+
+/* Animación SlideUp */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  color: #1e3a8a;  /* Azul oscuro */
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 0.2s;
+}
+
+/* Animación FadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 0.4s;
+}
+
+/* Inputs y Selects */
+input, select {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #90caf9;  /* Azul claro para bordes */
+  border-radius: 10px;
+  background-color: #e3f2fd;  /* Fondo azul suave */
+  transition: all 0.3s ease;
+}
+
+/* Input al recibir foco */
+input:focus, select:focus {
+  border-color: #1e3a8a;  /* Azul oscuro al enfocar */
+  box-shadow: 0 0 8px rgba(30, 58, 138, 0.3);  /* Sombra azul oscuro al enfocar */
+  outline: none;
+  background-color: #bbdefb;  /* Fondo azul más claro al enfocar */
+}
+
+/* Contenedor de contraseña */
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0d47a1;  /* Azul más oscuro para el toggle */
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.password-toggle:hover {
+  transform: translateY(-50%) scale(1.1);
+  color: #1e3a8a;  /* Azul más brillante al hacer hover */
+}
+
+/* Botón */
+button {
+  padding: 14px;
+  font-size: 16px;
+  background-color: #1976d2;  /* Azul intermedio */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #1565c0; /* Azul más oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(1);
+}
+
+/* Título de la lista de usuarios */
+.user-list-title {
+  margin-top: 30px;
+  font-size: 1.2em;
+  color: #1e3a8a;  /* Azul oscuro */
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 0.6s;
+}
+
+/* Mensaje cuando no hay usuarios */
+.no-users {
+  text-align: center;
+  color: #90caf9;  /* Azul claro para mensajes secundarios */
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 10px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 0.8s;
+}
+
+/* Animación de entrada de los elementos de la lista */
+@keyframes slideIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Lista de usuarios */
+ion-list {
+  opacity: 0;
+  animation: slideIn 0.8s forwards 1s;
+}
+
+ion-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 5px 0;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+ion-item:hover {
+  background-color: #e3f2fd; /* Fondo azul suave al pasar el cursor */
+  transform: translateY(-5px);
+}
+
+/* Botones en la lista */
+ion-button {
+  transition: all 0.3s ease;
+}
+
+ion-button:hover {
+  transform: scale(1.05);
+  background-color: #1976d2; /* Azul intermedio */
+  color: white;
+}
+
+/* Estilos de transiciones */
+input, select, button {
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, button:hover {
+  box-shadow: 0 0 8px rgba(30, 58, 138, 0.2); /* Sombra azul */
+}
+
+/* Estilo para el campo con error */
+ion-text {
+  font-size: 0.9em;
+  color: #d32f2f; /* Rojo oscuro para errores */
+  margin-top: 5px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 1.2s;
+}
+
+/* Añadir margen a los elementos */
+ion-item {
+  margin-bottom: 15px;
+}
+
+/* Animación del botón de acción en la lista */
+ion-button:active {
+  transform: scale(0.95);
+  background-color: #1565c0; /* Azul oscuro al ser presionado */
+  color: white;
+}
