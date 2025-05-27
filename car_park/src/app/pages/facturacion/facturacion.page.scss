@@ -1,0 +1,98 @@
+:host {
+  --ion-background-color: #f9f9f9;
+}
+
+ion-content {
+  background: #f9f9f9;
+}
+
+form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.6s ease;
+}
+
+ion-item {
+  --background: transparent;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+ion-label {
+  font-size: 1.4rem !important;
+  font-weight: 700;
+  color: #222;
+  transition: color 0.3s;
+}
+
+ion-input,
+ion-select {
+  font-size: 1.3rem !important;
+}
+
+ion-button {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+}
+
+ion-button:hover {
+  transform: scale(1.02);
+}
+
+/* Factura Card */
+ion-card {
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+ion-card-content p {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.alert {
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.alert-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.alert-error {
+  background-color: #dc3545;
+  color: white;
+}

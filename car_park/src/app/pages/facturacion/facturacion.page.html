@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Facturación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar el mensaje en la parte superior -->
+  <div *ngIf="mensaje" [ngClass]="{'alert-success': tipoMensaje === 'success', 'alert-error': tipoMensaje === 'error'}" class="alert">
+    {{ mensaje }}
+  </div>
+
+  <!-- Formulario de facturación -->
+  <form (ngSubmit)="generarFactura()">
+    <ion-item>
+      <ion-label position="floating">Nombre del Cliente</ion-label>
+      <ion-input [(ngModel)]="nombreCliente" name="nombreCliente" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Placa del Vehículo</ion-label>
+      <ion-input [(ngModel)]="placaVehiculo" name="placaVehiculo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Horas de Estancia</ion-label>
+      <ion-input type="number" [(ngModel)]="horasEstadia" name="horasEstadia" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tipo de Vehículo</ion-label>
+      <ion-select [(ngModel)]="tipoVehiculo" name="tipoVehiculo" required>
+        <ion-select-option value="Carro">Carro</ion-select-option>
+        <ion-select-option value="Moto">Moto</ion-select-option>
+        <ion-select-option value="Bicicleta">Bicicleta</ion-select-option>
+        <ion-select-option value="Camioneta">Camioneta</ion-select-option>
+        <ion-select-option value="Bus">Bus</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Vehículo Personalizado</ion-label>
+      <ion-input [(ngModel)]="vehiculoPersonalizado" name="vehiculoPersonalizado"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Total</ion-label>
+      <ion-input type="number" [value]="total" readonly></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Generar Factura</ion-button>
+  </form>
+
+  <!-- Mostrar factura generada -->
+  <div *ngIf="mostrarFactura && facturas.length > 0">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Factura Generada</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Cliente:</strong> {{ facturas[facturas.length - 1].cliente }}</p>
+        <p><strong>Fecha:</strong> {{ facturas[facturas.length - 1].fecha }}</p>
+        <p><strong>Horas:</strong> {{ facturas[facturas.length - 1].horas }}</p>
+        <p><strong>Placa:</strong> {{ facturas[facturas.length - 1].placa }}</p>
+        <p><strong>Tipo:</strong> {{ facturas[facturas.length - 1].tipo }}</p>
+        <p><strong>Total:</strong> ${{ facturas[facturas.length - 1].total | number:'1.0-0' }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
