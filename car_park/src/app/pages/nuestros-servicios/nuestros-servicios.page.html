@@ -1,0 +1,80 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Tarifas por Vehículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+
+  <!-- Tarifas por Tiempo -->
+  <section *ngIf="tarifasPorTiempo.length > 0; else sinTarifas">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Tarifas por Tiempo</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let tarifa of tarifasPorTiempo">
+            <ion-label class="tarifa-label">
+              <strong>Vehículo:</strong> {{ tarifa.tipoVehiculo }}<br>
+              <strong>Diurna:</strong> {{ tarifa.diurna | currency:'COP' }}<br>
+              <strong>Nocturna:</strong> {{ tarifa.nocturna | currency:'COP' }}<br>
+              <strong>Fines de Semana:</strong> {{ tarifa.finesSemanaFestivos | currency:'COP' }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <ng-template #sinTarifas>
+    <ion-text color="medium">
+      <p>No hay tarifas registradas actualmente.</p>
+    </ion-text>
+  </ng-template>
+
+  <!-- Tarifas por Hora y Minutos -->
+  <section *ngIf="tarifasPorHoraMinutos.length > 0; else sinTarifasHora">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Tarifa por Hora y Minutos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let tarifa of tarifasPorHoraMinutos">
+            <ion-label class="tarifa-label">
+              <strong>Vehículo:</strong> {{ tarifa.tipoVehiculo }}<br>
+              <strong>Por Hora:</strong> {{ tarifa.porHora | currency:'COP' }}<br>
+              <strong>Por Minuto:</strong> {{ tarifa.porMinuto | currency:'COP' }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <ng-template #sinTarifasHora>
+    <ion-text color="medium">
+      <p>No hay tarifas por hora y minutos registradas actualmente.</p>
+    </ion-text>
+  </ng-template>
+
+  <!-- Tarifas Mensuales -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tarifas Mensuales</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let tarifa of tarifasMensualidad">
+          <ion-label class="tarifa-label">
+            <strong>Vehículo:</strong> {{ tarifa.tipoVehiculo }}<br>
+            <strong>Plan:</strong> {{ tarifa.mensualidad }}<br>
+            <strong>Valor:</strong> {{ tarifa.valor | currency:'COP' }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
