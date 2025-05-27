@@ -1,0 +1,192 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Panel de Administración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Formulario para calcular tarifa -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Calcular Tarifa para un Vehículo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="3">
+            <ion-label>Tipo de Vehículo:</ion-label>
+            <ion-input type="text" [(ngModel)]="tipoSeleccionado" placeholder="Ej. Carro, Moto..."></ion-input>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-label>Placa:</ion-label>
+            <ion-input type="text" [(ngModel)]="placa" placeholder="Ej. ABC123"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-label>Hora de Entrada:</ion-label>
+            <ion-input type="time" [(ngModel)]="horaEntrada"></ion-input>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-label>Hora de Salida:</ion-label>
+            <ion-input type="time" [(ngModel)]="horaSalida"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-row class="ion-margin-top">
+        <ion-col>
+          <ion-button expand="full" color="primary" (click)="calcularPrecio()">Calcular Tarifa</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full" color="secondary" (click)="limpiarFormulario()">Limpiar</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="precioCalculado !== null" class="ion-margin-top alert alert-success">
+        <strong>Precio calculado:</strong>
+        {{ precioCalculado | currency: 'COP' }} <br />
+        <small>{{ detalleCalculo }}</small>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tabla Editable para Vehículos Registrados -->
+  <ion-card *ngIf="registrosTemporales.length > 0">
+    <ion-card-header>
+      <ion-card-title>Vehículos Registrados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let registro of registrosTemporales; let i = index">
+          <ion-col size="3">
+            <ion-label>Tipo</ion-label>
+            <ion-input [(ngModel)]="registro.tipo" disabled></ion-input>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>Placa</ion-label>
+            <ion-input [(ngModel)]="registro.placa" disabled></ion-input>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>Hora Entrada</ion-label>
+            <ion-input [(ngModel)]="registro.horaEntrada" disabled></ion-input>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>Hora Salida</ion-label>
+            <ion-input [(ngModel)]="registro.horaSalida" disabled></ion-input>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>Precio</ion-label>
+            <ion-input [(ngModel)]="registro.precio" disabled></ion-input>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button fill="clear" color="danger" (click)="eliminarRegistroTemporal(i)">Eliminar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Formulario para agregar nueva tarifa -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agregar Nueva Tarifa Personalizada</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>Tipo de Vehículo:</ion-label>
+            <ion-input type="text" [(ngModel)]="nuevaTarifa.tipoVehiculo"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Diurna ($/h):</ion-label>
+            <ion-input type="number" [(ngModel)]="nuevaTarifa.diurna"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Nocturna ($/h):</ion-label>
+            <ion-input type="number" [(ngModel)]="nuevaTarifa.nocturna"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Fines de Semana/Festivos ($/h):</ion-label>
+            <ion-input type="number" [(ngModel)]="nuevaTarifa.finesSemanaFestivos"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button expand="full" color="success" (click)="agregarTarifa()">Agregar Tarifa</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Gestión de Tarifas por Tipo de Vehículo -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Gestión de Tarifas por Tipo de Vehículo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let tarifa of tarifasPorTiempo">
+          <ion-col size="6">
+            <ion-label>Tipo</ion-label>
+            <ion-input [(ngModel)]="tarifa.tipoVehiculo" disabled></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Diurna</ion-label>
+            <ion-input [(ngModel)]="tarifa.diurna" disabled></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Nocturna</ion-label>
+            <ion-input [(ngModel)]="tarifa.nocturna" disabled></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>Fines de Semana/Festivos</ion-label>
+            <ion-input [(ngModel)]="tarifa.finesSemanaFestivos" disabled></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Facturación del Día -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Facturación del Día</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-input type="date" [(ngModel)]="facturacionDia.fecha"></ion-input>
+          </ion-col>
+          <ion-col size="4">
+            <ion-input type="number" [(ngModel)]="facturacionDia.montoTotal" placeholder="$"></ion-input>
+          </ion-col>
+          <ion-col size="4">
+            <ion-input type="number" [(ngModel)]="facturacionDia.vehiculosAtendidos"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button expand="full" color="primary" (click)="agregarFacturacionDia()">Agregar Facturación</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Historial de Facturación -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Historial de Facturación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let facturacion of facturacionHistorial">
+          <ion-col size="4">
+            <ion-label>{{ facturacion.fecha }}</ion-label>
+          </ion-col>
+          <ion-col size="4">
+            <ion-label>{{ facturacion.hora }}</ion-label>
+          </ion-col>
+          <ion-col size="4">
+            <ion-label>{{ facturacion.valor | currency }}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
