@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>com.corhuila.backend.movil</groupId>
+	<artifactId>car_park</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>CAR_PARK Backend</name>
+	<description>Backend móvil para gestión de parqueaderos CAR_PARK</description>
+
+	<properties>
+		<java.version>17</java.version>
+		<jakarta.persistence.version>3.1.0</jakarta.persistence.version>
+		<jakarta.validation.version>3.0.2</jakarta.validation.version>
+	</properties>
+
+	<dependencies>
+		<!-- Starter Web para REST APIs -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Seguridad Spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- JPA con Hibernate -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- Conector MySQL -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>8.3.0</version>
+		</dependency>
+
+		<!-- Jakarta Persistence API -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>${jakarta.persistence.version}</version>
+		</dependency>
+
+		<!-- Jakarta Validation API -->
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>${jakarta.validation.version}</version>
+		</dependency>
+
+		<!-- Spring Mail para envío de correos -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/release</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<!-- Plugin para empaquetar el JAR ejecutable -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>--release 17</jvmArguments>
+				</configuration>
+			</plugin>
+
+			<!-- Plugin compilador usando Java 17 sin preview -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<release>17</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependency>
+		<groupId>com.fasterxml.jackson.datatype</groupId>
+		<artifactId>jackson-datatype-jsr310</artifactId>
+	</dependency>
+
+</project>
