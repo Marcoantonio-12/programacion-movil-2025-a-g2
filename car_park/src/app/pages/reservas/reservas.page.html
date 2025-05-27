@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Reservas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form (ngSubmit)="reservarEspacio()">
+    <ion-item>
+      <ion-label position="stacked">Tipo de Vehículo</ion-label>
+      <ion-select [(ngModel)]="reserva.tipoVehiculo" name="tipoVehiculo" interface="popover" (ionChange)="onTipoVehiculoChange()">
+        <ion-select-option value="Moto">Moto</ion-select-option>
+        <ion-select-option value="Carro">Carro</ion-select-option>
+        <ion-select-option value="Bicicleta">Bicicleta</ion-select-option>
+        <ion-select-option value="Camioneta">Camioneta</ion-select-option>
+        <ion-select-option value="Bus">Bus</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Vehículo Personalizado</ion-label>
+      <ion-input [(ngModel)]="reserva.vehiculoPersonalizado" name="vehiculoPersonalizado" (input)="onVehiculoPersonalizadoInput()" placeholder="Otro tipo..."></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Placa</ion-label>
+      <ion-input [(ngModel)]="reserva.placa" name="placa" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha de Entrada</ion-label>
+      <ion-datetime [(ngModel)]="reserva.fechaHoraEntrada" name="fechaHoraEntrada" displayFormat="YYYY-MM-DDTHH:mm" required></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha de Salida</ion-label>
+      <ion-datetime [(ngModel)]="reserva.fechaHoraSalida" name="fechaHoraSalida" displayFormat="YYYY-MM-DDTHH:mm" required></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Reservar Espacio</ion-button>
+  </form>
+
+  <div *ngIf="ultimaReserva">
+    <h2>Reserva Realizada</h2>
+    <p><strong>Tipo:</strong> {{ ultimaReserva.tipoVehiculo || ultimaReserva.vehiculoPersonalizado }}</p>
+    <p><strong>Placa:</strong> {{ ultimaReserva.placa }}</p>
+    <p><strong>Entrada:</strong> {{ formatFechaHora(ultimaReserva.fechaHoraEntrada) }}</p>
+    <p><strong>Salida:</strong> {{ formatFechaHora(ultimaReserva.fechaHoraSalida) }}</p>
+    <p><strong>Duración:</strong> {{ duracionReserva }}</p>
+    <p><strong>Estimado:</strong> ${{ costoEstimado }}</p>
+  </div>
+
+</ion-content>
