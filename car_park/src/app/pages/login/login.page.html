@@ -1,0 +1,45 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Inicio de Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding login-bg">
+  <div class="login-wrapper">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="text-center">🚗 Accede a <strong>CAR_PARK</strong></ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item lines="none" class="input-item">
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+
+        <!-- Botón de INICIAR SESIÓN -->
+        <button (click)="login()" class="btn btn-warning w-100 shadow-sm mt-4 mb-3">
+          INICIAR SESIÓN
+        </button>
+
+        <!-- Botón de ¿OLVIDASTE TU CONTRASEÑA? -->
+        <button (click)="irAOlvidasteContrasena()" class="btn btn-outline-warning w-100 mb-3">
+          ¿OLVIDASTE TU CONTRASEÑA?
+        </button>
+
+        <!-- Botón de REGISTRARSE -->
+        <button (click)="irARegistro()" class="btn btn-outline-primary w-100">
+          REGISTRARSE
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

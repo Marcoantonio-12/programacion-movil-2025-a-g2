@@ -1,0 +1,26 @@
+.btn-warning, .btn-outline-warning, .btn-outline-primary {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajusta colores y efectos similares */
+.btn-warning {
+  background-color: #f1c40f;
+  border: 2px solid #f39c12;
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #f39c12;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
+}
+
+/* Similar para btn-outline-warning y btn-outline-primary */
